@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechGlow - Premium Hardware Ecosystem</title>
+    <style>
+        /* ==========================================
+           1. CONFIGURACIÓN GENERAL Y TIPOGRAFÍA PREMIUM
+        ========================================== */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f8fa;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================
+           2. NAVBAR (ELEGANTE Y FLOTANTE)
+        ========================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 10%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .navbar-brand span {
+            color: #2563eb; /* Azul corporativo */
+        }
+
+        .carrito-contenedor {
+            position: relative;
+            cursor: pointer;
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .carrito-contenedor:hover {
+            border-color: #cbd5e1;
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .carrito-contador {
+            background: #2563eb;
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ==========================================
+           3. ENCABEZADO MINIMALISTA
+        ========================================== */
+        header {
+            text-align: center;
+            margin: 140px 0 50px 0;
+            max-width: 650px;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.8px;
+        }
+
+        header p {
+            color: #64748b;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* ==========================================
+           4. CUADRÍCULA DE TIENDA PROFESIONAL
+        ========================================== */
+        .tienda-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 84%;
+            max-width: 1200px;
+            padding-bottom: 120px;
+        }
+
+        .producto-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
+            border-color: #cbd5e1;
+        }
+
+        .producto-imagen-wrapper {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background: #f8fafc;
+        }
+
+        .producto-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .producto-card:hover .producto-img {
+            transform: scale(1.03);
+        }
+
+        .producto-info {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .producto-titulo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            color: #0f172a;
+        }
+
+        .producto-descripcion {
+            font-size: 0.88rem;
+            color: #64748b;
+            height: 40px;
+            overflow: hidden;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .producto-precio {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* ==========================================
+           5. BOTÓN DE COMPRA ESTILO ACCIÓN
+        ========================================== */
+        .btn-comprar {
+            width: 100%;
+            background: #f1f5f9;
+            color: #0f172a;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .btn-comprar:hover {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-comprar:active {
+            transform: scale(0.98);
+        }
+
+        /* ==========================================
+           6. COMPONENTES DEL CARRITO (SIDEBAR PREMIUM)
+        ========================================== */
+        #carrito-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 420px;
+            height: 100vh;
+            background: #ffffff;
+            border-left: 1px solid #e2e8f0;
+            z-index: 1001;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s ease;
+        }
+
+        #carrito-modal.activo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carrito-modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .carrito-modal-header h2 {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .btn-cerrar {
+            background: #f1f5f9;
+            border: none;
+            color: #64748b;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .btn-cerrar:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .carrito-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .carrito-item {
+            display: flex;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .carrito-item-mini {
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .carrito-item-info {
+            flex-grow: 1;
+        }
+
+        .carrito-item-titulo {
+            font-size: 0.92rem;
+            font-weight: 600;
+            margin: 0 0 2px 0;
+            color: #0f172a;
+        }
+
+        .carrito-item-detalles {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .carrito-item-precio {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .btn-eliminar {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 0;
+        }
+
+        .btn-eliminar:hover {
+            text-decoration: underline;
+        }
+
+        .carrito-modal-footer {
+            padding: 24px;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .carrito-total-cont {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.92rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .carrito-total-precio {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .btn-primario {
+            width: 100%;
+            background: #2563eb;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-primario:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">TechGlow <span>Ecosystem</span></a>
+        <div class="carrito-contenedor" id="carrito-icono">
+            <span>Bolsa de compra</span>
+            <span class="carrito-contador" id="contador-global">0</span>
+        </div>
+    </nav>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <h1>Dispositivos de nueva generación</h1>
+        <p>Herramientas optimizadas con ingeniería de precisión para elevar tu productividad y flujo de trabajo digital.</p>
+    </header>
+
+    <!-- TIENDA COMPLETA (TODOS LOS PRODUCTOS RECUPERADOS) -->
+    <main class="tienda-container">
+        
+        <!-- Producto 1 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Audífonos Wireless Pro" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Audífonos Wireless Pro</h3>
+                <p class="producto-descripcion">Cancelación de ruido activa, batería de 40 horas y sonido de alta fidelidad.</p>
+                <span class="producto-precio">$149.99</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Audífonos Wireless Pro', 149.99, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 2 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Smartwatch Sport X" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Smartwatch Sport X</h3>
+                <p class="producto-descripcion">Monitoreo de ritmo cardíaco, GPS integrado y resistente al agua hasta 50 metros.</p>
+                <span class="producto-precio">$199.99</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Smartwatch Sport X', 199.99, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 3 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500" alt="Tenis Nebula Run" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Tenis Nebula Run</h3>
+                <p class="producto-descripcion">Suela de máxima amortiguación y tejido transpirable para corredores.</p>
+                <span class="producto-precio">$120.00</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Tenis Nebula Run', 120.00, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 4 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500" alt="Teclado Mecánico RGB" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Teclado Mecánico RGB</h3>
+                <p class="producto-descripcion">Switches premium intercambiables y retroiluminación completamente personalizable.</p>
+                <span class="producto-precio">$89.99</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Teclado Mecánico RGB', 89.99, 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 5 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500" alt="Micrófono de Estudio USB" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Micrófono de Estudio USB</h3>
+                <p class="producto-descripcion">Ideal para podcasting y streaming. Captura de audio cristalina sin ruidos.</p>
+                <span class="producto-precio">$75.50</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Micrófono de Estudio USB', 75.50, 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 6 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=500" alt="Mochila Tech Impermeable" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Mochila Tech Impermeable</h3>
+                <p class="producto-descripcion">Compartimento padded para laptop de 16" y puerto de carga USB integrado.</p>
+                <span class="producto-precio">$55.00</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Mochila Tech Impermeable', 55.00, 'https://images.unsplash.com/photo-1610461888750-10bfc601b874?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+        <!-- Producto 7 -->
+        <section class="producto-card">
+            <div class="producto-imagen-wrapper">
+                <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=500" alt="Powerbank Solar 20k" class="producto-img">
+            </div>
+            <div class="producto-info">
+                <h3 class="producto-titulo">Powerbank Solar 20k</h3>
+                <p class="producto-descripcion">Batería externa de 20,000 mAh con paneles solares para recarga en exteriores.</p>
+                <span class="producto-precio">$45.00</span>
+                <button class="btn-comprar" onclick="agregarAlCarrito('Powerbank Solar 20k', 45.00, 'https://images.unsplash.com/photo-1560343090-f0409e92791a?w=100')">Añadir a la bolsa</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL LATERAL (SIDEBAR DE COMPRA) -->
+    <div id="carrito-modal">
+        <div class="carrito-modal-header">
+            <h2>Resumen de Compra</h2>
+            <button class="btn-cerrar" onclick="conmutarCarrito()">✕</button>
+        </div>
+        <ul class="carrito-lista" id="lista-detallada">
+            <!-- Contenido dinámico mediante JavaScript -->
+        </ul>
+        <div class="carrito-modal-footer">
+            <div class="carrito-total-cont">
+                <span>Total a pagar:</span>
+                <span class="carrito-total-precio" id="total-global-precio">$0.00</span>
+            </div>
+            <button class="btn-primario">Continuar al pago</button>
+        </div>
+    </div>
+
+    <!-- CONTROL DE LÓGICA DE COMPRA -->
+    <script>
+        let carrito = [];
+
+        function agregarAlCarrito(nombre, precio, imgUrl) {
+            const index = carrito.findIndex(item => item.nombre === nombre);
+            if (index !== -1) {
+                carrito[index].cantidad++;
+            } else {
+                carrito.push({ nombre, precio, imgUrl, cantidad: 1 });
+            }
+            actualizarUI();
+            
+            const modal = document.getElementById('carrito-modal');
+            if (!modal.classList.contains('activo')) {
+                conmutarCarrito();
+            }
+        }
+
+        function eliminarDelCarrito(nombre) {
+            carrito = carrito.filter(item => item.nombre !== nombre);
+            actualizarUI();
+        }
+
+        function actualizarUI() {
+            const contadorGlobal = document.getElementById('contador-global');
+            let totalCantidad = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            contadorGlobal.textContent = totalCantidad;
+
+            const listaElemento = document.getElementById('lista-detallada');
+            listaElemento.innerHTML = '';
+            
+            let totalPrecioGlobal = 0;
+
+            if (carrito.length === 0) {
+                listaElemento.innerHTML = '<p style="text-align:center; padding:40px; color:#64748b; font-size:0.88rem;">Tu bolsa de compras está vacía.</p>';
+            } else {
+                carrito.forEach(item => {
+                    const subtotal = item.precio * item.cantidad;
+                    totalPrecioGlobal += subtotal;
+
+                    const listItem = document.createElement('li');
+                    listItem.className = 'carrito-item';
+                    listItem.innerHTML = `
+                        <img src="${item.imgUrl}" alt="${item.nombre}" class="carrito-item-mini">
+                        <div class="carrito-item-info">
+                            <h4 class="carrito-item-titulo">${item.nombre}</h4>
+                            <div class="carrito-item-detalles">
+                                <span class="carrito-item-precio">$${item.precio.toFixed(2)} (x${item.cantidad})</span>
+                                <button class="btn-eliminar" onclick="eliminarDelCarrito('${item.nombre}')">Quitar</button>
+                            </div>
+                        </div>
+                    `;
+                    listaElemento.appendChild(listItem);
+                });
+            }
+
+            const totalPrecioElemento = document.getElementById('total-global-precio');
+            totalPrecioElemento.textContent = `$${totalPrecioGlobal.toFixed(2)}`;
+        }
+
+        function conmutarCarrito() {
+            const modal = document.getElementById('carrito-modal');
+            modal.classList.toggle('activo');
+        }
+
+        document.getElementById('carrito-icono').addEventListener('click', conmutarCarrito);
+        actualizarUI();
+    </script>
+</body>
+</html>
